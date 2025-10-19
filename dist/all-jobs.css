@@ -1,0 +1,26 @@
+.all-jobs-section {
+    padding: 50px 0;
+    background: rgb(227, 255, 227);
+}
+.all-jobs-wrap  {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+.all-jobs-wrap h5 {
+    font-size: 3rem;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .all-jobs-wrap h5 {
+        font-size: 2rem;
+    }
+}
+@media screen and (max-width: 575px) {
+    .all-jobs-wrap h5 {
+        font-size: 1.5rem;
+    }
+}

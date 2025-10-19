@@ -42,6 +42,11 @@
     display: flex;
     flex-direction: column;
 }
+.form-item select {
+    padding: 10px;
+    border: none;
+    outline: none;
+}
 .form-btns{
     display: flex;
     flex-wrap: wrap;
