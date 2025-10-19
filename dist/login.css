@@ -1,0 +1,26 @@
+.form-item label {
+    margin-bottom: 10px;
+}
+.form-item input {
+    border: none;
+    outline: none;
+    padding: 10px;
+}
+
+.login-form {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px;
+    background: var(--gray);
+}
+
+.form-item {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.form-btns{
+    display: flex;
+    gap: 10px;
+}

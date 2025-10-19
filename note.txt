@@ -1,0 +1,21 @@
+--------------------------------
+------ Job Board Project -------
+--------------------------------
+
+
+
+--- Database of this project ---
+
+--- Jobs Database
+--- Users Database
+--- Application Database
+
+
+--- Login Page with User Database
+--- Login will manage through Session
+--- Different Login For Manager & Applicant
+--- Manager can upload jobs
+
+
+--- Customer Can Buy products
+--- Customer will see a dashboard with his purchase history
