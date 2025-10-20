@@ -30,9 +30,14 @@
         width: 100%;
         height: 100%;
         position: fixed;
-        background: #00000052;
+        
         z-index: 9999;
         display: none;
+    }
+    .sidebar-overlay {
+        width: 100%;
+        height: 100%;
+        background: #00000052;
     }
     main {
         width: 100%;
@@ -114,3 +119,37 @@ main {
     outline: none;
     padding: 5px;
 }
+
+
+/* all jobs section start */
+.all-jobs-wrap img {
+    max-width: 120px;
+    height: 60px;
+    object-fit: cover;
+}
+thead {
+    background: var(--black);
+}
+thead tr td{
+    padding: 10px 20px;
+    color: var(--white);
+}
+
+tbody td {
+    padding: 10px;
+    font-size: 12px;
+    background: #efefef;
+}
+.table-link {
+    background: var(--blue);
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    display: inline-block;
+    border-radius: 5px;
+}
+.table-link-danger {
+    background: red;
+    margin-top: 2px;
+}
+/* all jobs section end */
