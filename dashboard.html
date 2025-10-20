@@ -10,6 +10,7 @@
 <body>
     
     <section class="main-section">
+        <button class="sidebar-toggle btn btn-primary">Sidebar</button>
         <aside>
             <div class="sidebar-wrap">
                 <div class="dashboard-logo-wrap">
@@ -45,10 +46,6 @@
                             <input type="text" name="job-title" id="job-title">
                         </div>
                         <div class="dashboard-form-item">
-                            <label for="job-description">Description</label>
-                            <textarea name="job-description" id="job-description"></textarea>
-                        </div>
-                        <div class="dashboard-form-item">
                             <label for="job-category">Category</label>
                             <select name="job-category" id="job-category">
                                 <option value="web-design">Web Design</option>
@@ -56,11 +53,20 @@
                                 <option value="digital-marketing">Digital Marketing</option>
                             </select>
                         </div>
+                        <div class="dashboard-form-item">
+                            <label for="job-description">Description</label>
+                            <textarea rows="4" name="job-description" id="job-description"></textarea>
+                        </div>
+                        
+                        <div class="dashboard-form-item">
+                            <button class="btn btn-primary" type="submit">Add New Job</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </main>
     </section>
     
+    <script src="./dist/script.js"></script>
 </body>
 </html>
