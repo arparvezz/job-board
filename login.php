@@ -1,3 +1,23 @@
+<?php
+session_start();
+$_SESSION['user'] = $_SESSION['user'] ?? "applicant";
+
+include "db.php";
+
+
+
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if($_POST["operation"] == "user-login"){
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        DB::login($email,$password);
+        
+        
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +36,8 @@
     <section class="login-form-section">
         <div class="container">
             <div class="login-form">
-                <form action="">
+                <form method="POST">
+                    <input type="hidden" name="operation" value="user-login">
                     <div class="form-heading-wrap">
                         <h3 class="form-heading">Login Now</h3>
                     </div>
