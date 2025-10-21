@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +20,7 @@
         <aside class="sidebar">
             <div class="sidebar-wrap">
                 <div class="dashboard-logo-wrap">
-                    <a href="/index.html">Job Board <span class="user-badge">Manager</span></a>
+                    <a href="/index.html">Job Board <span class="user-badge"><?php echo $_SESSION['user']; ?></span></a>
                 </div>
                 <div class="dashboard-nav-links">
                     <ul>

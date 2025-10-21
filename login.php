@@ -1,21 +1,6 @@
 <?php
 session_start();
-$_SESSION['user'] = $_SESSION['user'] ?? "applicant";
-
-include "db.php";
-
-
-
-
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if($_POST["operation"] == "user-login"){
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        DB::login($email,$password);
-        
-        
-    }
-}
+$_SESSION['user'] = $_SESSION['user'] ?? "guest";
 
 ?>
 <!DOCTYPE html>
@@ -36,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <section class="login-form-section">
         <div class="container">
             <div class="login-form">
-                <form method="POST">
+                <form method="POST" action="functions.php">
                     <input type="hidden" name="operation" value="user-login">
                     <div class="form-heading-wrap">
                         <h3 class="form-heading">Login Now</h3>
@@ -51,9 +36,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                     <div class="form-btns">
                         <button class="btn btn-primary login-btn" type="submit">Login</button>
-                        <a href="registration.html" class="btn btn-secondary registration-btn" type="submit">Register Now</a>
+                        <a href="registration.php" class="btn btn-secondary registration-btn" type="submit">Register Now</a>
                     </div>
                 </form>
+                <?php
+                    if(isset($_GET['msg'])){
+                        $msg = $_GET['msg'];
+                        echo "<span class='alert alert-danger'>{$msg}</span>";
+                    }
+                ?>
             </div>
         </div>
     </section>

@@ -63,6 +63,24 @@ img{
     background-color: var(--white);
     color: var(--green);
 }
+.alert {
+    margin: 10px 0;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.alert-danger{
+    background-color: red;
+    color: var(--white);
+}
+
+.alert-success{
+    background-color: green;
+    color: var(--white);
+}
+
 /* Header start */
 header {
     border-bottom: 1px solid var(--gray);

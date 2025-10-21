@@ -1,3 +1,8 @@
+<?php
+session_start();
+$_SESSION['user'] = $_SESSION['user'] ?? "guest";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +21,8 @@
     <section class="login-form-section">
         <div class="container">
             <div class="login-form">
-                <form action="">
+                <form action="functions.php" method="POST">
+                    <input type="hidden" name="operation" value="user-registration">
                     <div class="form-heading-wrap">
                         <h3 class="form-heading">Register Now</h3>
                     </div>
@@ -45,9 +51,15 @@
                     </div>
                     <div class="form-btns">
                         <button class="btn btn-secondary registration-btn" type="submit">Register Now</button>
-                        <a href="login.html" class="btn btn-primary login-btn" type="submit">Have an account - Login</a>
+                        <a href="login.php" class="btn btn-primary login-btn" type="submit">Have an account - Login</a>
                     </div>
                 </form>
+                <?php
+                    if(isset($_GET['msg'])){
+                        $msg = $_GET['msg'];
+                        echo "<span class='alert alert-danger'>{$msg}</span>";
+                    }
+                ?>
             </div>
         </div>
         
