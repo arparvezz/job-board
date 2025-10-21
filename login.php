@@ -1,6 +1,11 @@
 <?php
 session_start();
-$_SESSION['user'] = $_SESSION['user'] ?? "guest";
+if(isset($_SESSION['user'])){
+    if($_SESSION['user'] == "manager" || $_SESSION['user'] == "applicant"){
+        header("location: dashboard.php");
+    }
+}
+
 
 ?>
 <!DOCTYPE html>

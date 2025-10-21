@@ -7,7 +7,7 @@ if(!$connect){
     echo "DB not connected";
 }
 
-class DB {
+class User {
 
 
     // login system
@@ -32,18 +32,17 @@ class DB {
         }
 
         if(!$userFound){
-            header("location: login.php?msg=username-or-password-incorrect");
+            header("location: login.php?msg=username or password incorrect");
         }       
     }
 
     // register user
-    public static function registerUser($name, $email, $password, $confirmPassword){
+    public static function registerUser($name, $email, $password, $confirmPassword, $role){
         global $connect;
-        if($password == $confirmPassword){
-            $q = "INSERT INTO users(`name`,`email`,`password`) VALUES('$name','$email','$password')";
-            $query = mysqli_query($connect,$q);
-            echo $query;
+        $q = "INSERT INTO users(`name`,`email`,`password`,`role`) VALUES('$name','$email','$password', '$role')";
+        $query = mysqli_query($connect,$q);
+        if($query){
+            header("location: login.php");
         }
-
     }
 }

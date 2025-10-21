@@ -83,13 +83,17 @@
     bottom: 0;
     width: 100%;
 }
-.dashboard-logout-wrap a{
+.dashboard-logout-btn {
     display: block;
     padding: 10px 20px;
     text-decoration: none;
     background: red;
     color: var(--white);
     font-size: 1rem;
+    border: none;
+    outline: none;
+    width: 100%;
+    cursor: pointer;
 }
 /* sidebar area end */
 

@@ -2,7 +2,6 @@
 session_start();
 
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,174 +19,59 @@ session_start();
         <aside class="sidebar">
             <div class="sidebar-wrap">
                 <div class="dashboard-logo-wrap">
-                    <a href="/index.html">Job Board <span class="user-badge"><?php echo $_SESSION['user']; ?></span></a>
+                    <a href="/job-board/index.php">Job Board <span class="user-badge"><?php echo $_SESSION['user']; ?></span></a>
                 </div>
                 <div class="dashboard-nav-links">
                     <ul>
-                        <li><a href="/index.html">Home</a></li>
-                        <li><a href="/all-jobs.html">All Jobs</a></li>
-                        <li><a href="/login.html">Add New Job</a></li>
-                        <li><a href="/login.html">Edit Job</a></li>
-                        <li><a href="/login.html">My Account </a></li>
+                        <li><a href="/job-board/index.php">Home</a></li>
+                        <?php if($_SESSION['user'] == "manager"){ ?>
+                            <li><a href="/job-board/dashboard.php?content=all-jobs">All Jobs</a></li>
+                            <li><a href="/job-board/dashboard.php?content=add-new-job">Add New Job</a></li>
+                            <li><a href="/job-board/dashboard.php?content=edit-job">Edit Job</a></li>
+                        <?php } ?>
+                        <li><a href="/job-board/dashboard.php?content=my-account">My Account </a></li>
                     </ul>
                 </div>
                 <div class="dashboard-logout-wrap">
-                    <a href="/login.html">Logout</a>
+                    <form action="functions.php" method="POST">
+                        <input type="hidden" name="operation" value="user-logout">
+                        <button class="dashboard-logout-btn" type="submit">Logout</button>
+                    </form>
                 </div>
             </div>
             <div class="sidebar-overlay"></div>
         </aside>
         <main>
 
-            <!-- All job -->
-            <div class="main-content-wrap">
-                <div class="dashboard-heading-wrap">
-                    <h3>All Jobs</h3>
-                </div>
-                <div class="all-jobs-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>Thumbnail</td>
-                                <td>Title</td>
-                                <td>Category</td>
-                                <td>Description</td>
-                                <td>Action</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><img src="./imgs/web-design.jpg" alt=""></td>
-                                <td>Lorem ipsum dolor sit amet.</td>
-                                <td>Web Design</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda quod veritatis labore vitae non sunt hic harum placeat qui animi, asperiores molestias. Eius, adipisci. Ipsam.</td>
-                                <td><a class="table-link" href="#">Edit Post</a> <a class="table-link table-link-danger" href="#">Delete Post</a></td>
-                            </tr>
-                            <tr>
-                                <td><img src="./imgs/web-design.jpg" alt=""></td>
-                                <td>Lorem ipsum dolor sit amet.</td>
-                                <td>Web Design</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda quod veritatis labore vitae non sunt hic harum placeat qui animi, asperiores molestias. Eius, adipisci. Ipsam.</td>
-                                <td><a class="table-link" href="#">Edit Post</a> <a class="table-link table-link-danger" href="#">Delete Post</a></td>
-                            </tr>
-                            <tr>
-                                <td><img src="./imgs/web-design.jpg" alt=""></td>
-                                <td>Lorem ipsum dolor sit amet.</td>
-                                <td>Web Design</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda quod veritatis labore vitae non sunt hic harum placeat qui animi, asperiores molestias. Eius, adipisci. Ipsam.</td>
-                                <td><a class="table-link" href="#">Edit Post</a> <a class="table-link table-link-danger" href="#">Delete Post</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <?php
+                if((isset($_GET['content']) && $_GET['content'] == "all-jobs") || (!isset($_GET["content"]) && $_SESSION['user'] == 'manager')){
+                    include "./components/all-jobs.php";
+                }
+            ?>
 
-            <!-- add new job -->
-            <div class="main-content-wrap">
-                <div class="dashboard-heading-wrap">
-                    <h3>Add New Job</h3>
-                </div>
-                <div class="add-job-form">
-                    <form action="">
-                        <div class="dashboard-form-item">
-                            <label for="job-thumb">Select Thumbnail</label>
-                            <input type="file" name="job-thumb" id="job-thumb">
-                        </div>
-                        <div class="dashboard-form-item">
-                            <label for="job-title">Title</label>
-                            <input type="text" name="job-title" id="job-title">
-                        </div>
-                        <div class="dashboard-form-item">
-                            <label for="job-category">Category</label>
-                            <select name="job-category" id="job-category">
-                                <option value="web-design">Web Design</option>
-                                <option value="graphic-design">Graphic Design</option>
-                                <option value="digital-marketing">Digital Marketing</option>
-                            </select>
-                        </div>
-                        <div class="dashboard-form-item">
-                            <label for="job-description">Description</label>
-                            <textarea rows="4" name="job-description" id="job-description"></textarea>
-                        </div>
-                        
-                        <div class="dashboard-form-item">
-                            <button class="btn btn-primary" type="submit">Add New Job</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <?php
+                if(isset($_GET['content']) && $_GET['content'] == "add-new-job" ){
+                    include "./components/add-new-job.php";
+                }
+            ?>
 
-            <!-- Edit job -->
-            <div class="main-content-wrap">
-                <div class="dashboard-heading-wrap">
-                    <h3>Edit Job</h3>
-                </div>
-                <div class="add-job-form">
-                    <form action="">
-                        <div class="dashboard-form-item">
-                            <div class="job-thumbs-section">
-                                <div class="job-thumbs-section-prev">
-                                    <div class="prev-thumb-preview">
-                                        <span>X</span>
-                                    </div>
-                                </div>
-                                <div class="job-thumbs-section-nex">
-                                    <label for="job-thumb">Select New Thumbnail</label>
-                                    <input type="file" name="job-thumb" id="job-thumb">
-                                </div>
-                            </div>
-                            
-                            
-                        </div>
-                        <div class="dashboard-form-item">
-                            <label for="job-title">Title</label>
-                            
-                            <input type="text" name="job-title" id="job-title" value="Lorem ipsum dolor sit amet.">
-                        </div>
-                        <div class="dashboard-form-item">
-                            <label for="job-category">Category</label>
-                            <select name="job-category" id="job-category">
-                                <option value="web-design">Web Design</option>
-                                <option value="graphic-design">Graphic Design</option>
-                                <option value="digital-marketing">Digital Marketing</option>
-                            </select>
-                        </div>
-                        <div class="dashboard-form-item">
-                            <label for="job-description">Description</label>
-                            <textarea rows="4" name="job-description" id="job-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae cum similique sit ipsam itaque! Accusantium nobis odio vitae quis explicabo?</textarea>
-                        </div>
-                        
-                        <div class="dashboard-form-item">
-                            <button class="btn btn-primary" type="submit">Update Job</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <?php
+                if(isset($_GET['content']) && $_GET['content'] == "edit-job" ){
+                    include "./components/edit-job.php";
+                }
+            ?>
 
-            <!-- Edit Profile -->
-            <div class="main-content-wrap">
-                <div class="dashboard-heading-wrap">
-                    <h3>My Profile</h3>
-                </div>
-                <div class="add-job-form">
-                    <form action="">
-                        <div class="dashboard-form-item">
-                            <label for="profile-email">Email</label>
-                            <input type="text" name="profile-email" id="profile-email" value="Lorem ipsum dolor sit amet.">
-                        </div>
+            <?php
+                if(isset($_GET['content']) && $_GET['content'] == "my-account" ){
+                    include "./components/my-account.php";
+                }
+            ?>
 
-                        <div class="dashboard-form-item">
-                            <label for="profile-password">Password</label>
-                            <input type="text" name="profile-password" id="profile-password" value="Lorem ipsum dolor sit amet.">
-                        </div>
-                       
-                        
-                        <div class="dashboard-form-item">
-                            <button class="btn btn-primary" type="submit">Update Profile</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            
+
+            
+
+            
 
             
         </main>

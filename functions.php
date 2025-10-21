@@ -8,7 +8,14 @@ include ("db.php");
 if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "user-login"){
     $email = $_POST["email"];
     $password = $_POST["password"];
-    DB::login($email,$password);
+    User::login($email,$password);
+}
+
+
+// User logout function
+if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "user-logout"){
+    session_destroy();
+    header("location: login.php");
 }
 
 // User Registration function
@@ -21,6 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "user-registra
     if($name != "" && $email != "" && $password != "" && $confirmPassword != ""){
         if($password == $confirmPassword){
             echo "Name: " . $name . " " . "Email: " . $email . " " . "Role: " . $role . " " . "Password: " . $password . " " . "Confirm Password: " . $confirmPassword;
+            User::registerUser($name,$email,$password,$confirmPassword,$role);
         }else{
             header("location: registration.php?msg=password and confirm password didn't match");
             die();
