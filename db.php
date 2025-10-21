@@ -8,8 +8,6 @@ if(!$connect){
 }
 
 class User {
-
-
     // login system
     public static function login($email,$password){
         global $connect;
@@ -44,5 +42,15 @@ class User {
         if($query){
             header("location: login.php");
         }
+    }
+}
+
+
+
+
+
+class Posts{
+    public static function addPost($thumb,$title,$description,$category){
+        
     }
 }

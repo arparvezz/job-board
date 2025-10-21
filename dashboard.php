@@ -43,18 +43,21 @@ session_start();
         </aside>
         <main>
 
+            <!-- show if user is manager -->
             <?php
                 if((isset($_GET['content']) && $_GET['content'] == "all-jobs") || (!isset($_GET["content"]) && $_SESSION['user'] == 'manager')){
                     include "./components/all-jobs.php";
                 }
             ?>
 
+            <!-- show if user is manager -->
             <?php
                 if(isset($_GET['content']) && $_GET['content'] == "add-new-job" ){
                     include "./components/add-new-job.php";
                 }
             ?>
 
+            <!-- show if user is manager -->
             <?php
                 if(isset($_GET['content']) && $_GET['content'] == "edit-job" ){
                     include "./components/edit-job.php";
