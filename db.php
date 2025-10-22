@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['user'] = $_SESSION['user'] ?? "guest";
+
 
 $connect = new mysqli("localhost","root","","jobs");
 if(!$connect){
@@ -8,7 +8,8 @@ if(!$connect){
 }
 
 class User {
-    // login system
+
+    // login User
     public static function login($email,$password){
         global $connect;
         $q = "SELECT * FROM users";
@@ -25,6 +26,7 @@ class User {
                 $userFound = true;
                 echo "User Found" . " role: " . $user['role'];
                 $_SESSION['user'] = $user['role'];
+                $_SESSION['userId'] = $user['id'];
                 header("location: dashboard.php?user={$user['role']}");
             }
         }
@@ -43,6 +45,27 @@ class User {
             header("location: login.php");
         }
     }
+
+    // update user Info
+    public static function updateUserInfo($userId,$name,$email,$password){
+        global $connect;
+        $q = "UPDATE users SET `name` = '{$name}', `email` = '{$email}',`password` = '{$password}' WHERE id = '{$userId}' LIMIT 1";
+        $query = mysqli_query($connect,$q);
+        if($query){
+            header("location: my-account.php?msg=user info updated");
+        }
+    }
+
+    // get User Info
+    public static function getUserInfo($userId){
+        global $connect;
+        $q = "SELECT * FROM users WHERE id = {$userId}";
+        $query = mysqli_query($connect,$q);
+        while($row = mysqli_fetch_assoc($query)){
+            return $row;
+        }
+    }
+
 }
 
 
@@ -51,6 +74,6 @@ class User {
 
 class Posts{
     public static function addPost($thumb,$title,$description,$category){
-        
+
     }
 }

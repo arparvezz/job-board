@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['user'] = $_SESSION['user'] ?? "guest";
+
 include ("db.php");
 
 
@@ -27,7 +27,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "user-registra
     $confirmPassword = $_POST["confirm-password"];
     if($name != "" && $email != "" && $password != "" && $confirmPassword != ""){
         if($password == $confirmPassword){
-            echo "Name: " . $name . " " . "Email: " . $email . " " . "Role: " . $role . " " . "Password: " . $password . " " . "Confirm Password: " . $confirmPassword;
             User::registerUser($name,$email,$password,$confirmPassword,$role);
         }else{
             header("location: registration.php?msg=password and confirm password didn't match");
@@ -38,3 +37,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "user-registra
         die();
     }
 }
+
+// User Info update
+if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "user-info-update"){
+    $userId = $_POST["profile-id"];
+    $name = $_POST["profile-name"];
+    $email = $_POST["profile-email"];
+    $password = $_POST["profile-password"];
+    if($name != "" && $email != "" && $password != ""){
+            User::updateUserInfo($userId,$name,$email,$password);
+            header("location: dashboard.php?content=my-account&msg=profile info updated!&success=true");
+    }else{
+        echo $name . " " . $email . " " . $password;
+        header("location: dashboard.php?content=my-account&msg=Some field value missing!&success=false");
+        die();
+    }
+}
+
