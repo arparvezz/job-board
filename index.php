@@ -1,3 +1,7 @@
+<?php
+    require("db.php");
+    Jobs::allJobs();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

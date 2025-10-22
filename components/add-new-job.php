@@ -1,10 +1,21 @@
 <!-- add new job start -->
 <div class="main-content-wrap">
+    <?php
+        if(isset($_GET['msg']) && isset($_GET['success'])){
+            $msg = $_GET['msg'];
+            if( $_GET['success'] == 'true'){
+                echo "<span class='alert alert-success'>{$msg}</span>";
+            }else{
+                echo "<span class='alert alert-danger'>{$msg}</span>";
+            }
+        }
+    ?>
     <div class="dashboard-heading-wrap">
         <h3>Add New Job</h3>
     </div>
     <div class="add-job-form">
-        <form action="">
+        <form action="functions.php" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="operation" value="add-new-job">
             <div class="dashboard-form-item">
                 <label for="job-thumb">Select Thumbnail</label>
                 <input type="file" name="job-thumb" id="job-thumb">

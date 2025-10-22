@@ -72,8 +72,32 @@ class User {
 
 
 
-class Posts{
-    public static function addPost($thumb,$title,$description,$category){
+class Jobs{
 
+
+    // Add new job
+    public static function addPost($thumb,$title,$description,$category,$posted_by){
+        global $connect;
+        $q = "INSERT INTO jobs(`thumbnail`,`title`,`description`,`category`,`posted_by`) VALUES('{$thumb}','{$title}','{$description}','{$category}','{$posted_by}')";
+        $query = mysqli_query($connect, $q);
+        if($query){
+            header("location: /job-board/dashboard.php?content=add-new-job&msg=post added!&success=true");
+        }
     }
+
+    // Get all jobs
+
+    public static function allJobs(){
+        global $connect;
+        $q = "SELECT * FROM jobs";
+        $query = mysqli_query($connect, $q);
+        $data = [];
+        while($row = mysqli_fetch_assoc($query)){
+            $data[] = $row;
+        }
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+    }
+
 }

@@ -3,6 +3,9 @@ session_start();
 
 include ("db.php");
 
+// ============================================================================================= //
+// ================================ USER MANAGEMENT START ====================================== //
+// ============================================================================================= //
 
 // User login function
 if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "user-login"){
@@ -54,3 +57,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "user-info-upd
     }
 }
 
+// ============================================================================================= //
+// ================================== USER MANAGEMENT END ====================================== //
+// ============================================================================================= //
+
+
+
+
+// ============================================================================================= //
+// ================================== JOB MANAGEMENT START ===================================== //
+// ============================================================================================= //
+
+
+if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "add-new-job"){
+    $filesDirectory = "./imgs/";
+    $title = $_POST["job-title"];
+    $description = $_POST["job-description"];
+    $category = $_POST["job-category"];
+    $posted_by = $_SESSION['userId'];
+    $thumbnail = $_FILES;
+    $thumbnailName = $thumbnail['job-thumb']['name'];
+
+    if($title != "" && $description != "" && $thumbnailName != ""){
+        move_uploaded_file($thumbnail['job-thumb']['tmp_name'], "$filesDirectory/$thumbnailName");
+        Posts::addPost($thumbnailName,$title,$description,$category,$posted_by);
+    }else{
+        header("location: /job-board/dashboard.php?content=add-new-job&msg=field info missing!&success=false");
+    }
+
+}
+
+// ============================================================================================= //
+// =================================== JOB MANAGEMENT END ====================================== //
+// ============================================================================================= //
