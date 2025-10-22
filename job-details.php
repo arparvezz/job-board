@@ -1,3 +1,20 @@
+<?php
+if(!isset($_SESSION)){
+    session_start();
+}
+$postId = 1;
+
+if(isset($_GET['post-id'])){
+   $postId = $_GET['post-id'];
+}
+
+require("functions.php");
+$jobsDetails = Jobs::getJobDetails($postId)[0];
+
+
+// print_r($jobsDetails);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,12 +36,12 @@
     <section class="job-details">
         <div class="container">
             <div class="job-details-wrap">
-                <h3>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quod.</h3>
+                <h3><?php echo $jobsDetails['title']; ?></h3>
                 <div class="job-details-thumb">
-                    <img src="./imgs/web-design.jpg" alt="job-details-thumb">
+                    <img src="./imgs/<?php echo $jobsDetails['thumbnail']; ?>" alt="job-details-thumb">
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, autem odit accusamus dignissimos quisquam officiis ut repellendus at esse minima quis, fugiat incidunt odio necessitatibus consequatur ducimus, aliquid aspernatur! Voluptatem, suscipit? Odit, tempore dolores. Magnam error unde eum, nemo laboriosam quisquam earum libero sint deleniti eaque quo cum voluptatem minima corrupti assumenda quaerat, rerum inventore cumque dignissimos quia id in a quas! Perferendis ipsa numquam, nesciunt dolore aperiam odio vitae quaerat quasi aspernatur tempore magnam omnis impedit delectus, cumque nulla maxime magni, itaque minima inventore corrupti pariatur. Iure fugiat velit, doloribus impedit rem iste illo, reprehenderit fuga earum alias sapiente perspiciatis omnis facilis dignissimos tenetur similique eius sequi! Amet perspiciatis eum natus dolorem accusantium non accusamus vitae nisi fuga facere quod inventore commodi repellendus, voluptas culpa reiciendis, perferendis quis! Veniam dolorem quo praesentium dolore quidem, corrupti nam similique ducimus minima deserunt assumenda exercitationem, officia nemo at quaerat reiciendis consectetur sapiente, libero fugiat quod. Fugiat debitis eius neque eum aspernatur ipsa ipsam molestiae, sequi quasi rem suscipit quis iusto est vel, obcaecati perferendis earum, qui voluptates aliquam aut reprehenderit laudantium. Commodi repellat voluptatum, quasi dolorem ullam maiores quas doloribus, accusamus quam nam unde mollitia sit reprehenderit explicabo aliquid pariatur ipsa ipsum!</p>
-                <a class="btn btn-primary" href="#">Apply This Job Now</a>
+                <p><?php echo $jobsDetails['description']; ?></p>
+                <a class="btn btn-primary" href="/job-board/apply.php?post-id=<?php echo $jobsDetails['id']; ?>">Apply This Job Now</a>
             </div>
         </div>
     </section>

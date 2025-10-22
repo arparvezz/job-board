@@ -180,9 +180,30 @@ header {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
+.job-link{
+    display: flex;
+    position: relative;
+}
+.job-category {
+    background: var(--blue);
+    color: var(--white);
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 6px 12px;
+    border-radius: 10px;
+}
 .job-title {
+    text-decoration: none;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
     margin: 5px 0;
     color: var(--blue);
+}
+.job-thumbnail{
+    aspect-ratio: 5/3;
+    object-fit: cover;
 }
 .job-description{
     color: var(--light-black);

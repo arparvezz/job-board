@@ -1,3 +1,7 @@
+<?php
+    require("functions.php");
+    $allJobs = Jobs::allJobs();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,82 +46,20 @@
                 </div>
                 <div class="job-grid-wrap">
                     <div class="jobs-grid">
-                        <div class="job-card">
-                            <div class="job-thumb">
-                                <a href="#">
-                                    <img src="./imgs/web-design.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="job-content">
-                                <h3 class="job-title">Junior Web Designer</h3>
-                                <p class="job-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque quae quo quis quibusdam aliquam quasi porro ex labore, perspiciatis quas!</p>
-                                <a class="btn" href="#">Show Details</a>
-                            </div>
-                        </div>
-                        <div class="job-card">
-                            <div class="job-thumb">
-                                <a href="#">
-                                    <img src="./imgs/web-design.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="job-content">
-                                <h3 class="job-title">Junior Web Designer</h3>
-                                <p class="job-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque quae quo quis quibusdam aliquam quasi porro ex labore, perspiciatis quas!</p>
-                                <a class="btn" href="#">Show Details</a>
-                            </div>
-                        </div>
-                        <div class="job-card">
-                            <div class="job-thumb">
-                                <a href="#">
-                                    <img src="./imgs/web-design.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="job-content">
-                                <h3 class="job-title">Junior Web Designer</h3>
-                                <p class="job-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque quae quo quis quibusdam aliquam quasi porro ex labore, perspiciatis quas!</p>
-                                <a class="btn" href="#">Show Details</a>
-                            </div>
-                        </div>
-                        <div class="job-card">
-                            <div class="job-thumb">
-                                <a href="#">
-                                    <img src="./imgs/web-design.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="job-content">
-                                <h3 class="job-title">Junior Web Designer</h3>
-                                <p class="job-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque quae quo quis quibusdam aliquam quasi porro ex labore, perspiciatis quas!</p>
-                                <a class="btn" href="#">Show Details</a>
-                            </div>
-                        </div>
-                        <div class="job-card">
-                            <div class="job-thumb">
-                                <a href="#">
-                                    <img src="./imgs/web-design.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="job-content">
-                                <h3 class="job-title">Junior Web Designer</h3>
-                                <p class="job-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque quae quo quis quibusdam aliquam quasi porro ex labore, perspiciatis quas!</p>
-                                <a class="btn" href="#">Show Details</a>
-                            </div>
-                        </div>
-                        <div class="job-card">
-                            <div class="job-thumb">
-                                <a href="#">
-                                    <img src="./imgs/web-design.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="job-content">
-                                <h3 class="job-title">Junior Web Designer</h3>
-                                <p class="job-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque quae quo quis quibusdam aliquam quasi porro ex labore, perspiciatis quas!</p>
-                                <a class="btn" href="#">Show Details</a>
-                            </div>
-                        </div>
+                        <?php
+                            foreach($allJobs as $job):
+                        ?>
+                            <!-- job card goes here -->
+                            <?php
+                                require("./components/job-card.php");
+                            ?>
+                        <?php
+                            endforeach;
+                        ?>
                     </div>
-                    <div class="jobs-grid-btn">
+                    <!-- <div class="jobs-grid-btn">
                         <a class="btn btn-secondary" href="#">Show All Jobs</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

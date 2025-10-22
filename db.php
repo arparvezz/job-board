@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(!isset($_SESSION)){
+    session_start();
+}
 
 
 $connect = new mysqli("localhost","root","","jobs");
@@ -86,7 +88,6 @@ class Jobs{
     }
 
     // Get all jobs
-
     public static function allJobs(){
         global $connect;
         $q = "SELECT * FROM jobs";
@@ -95,9 +96,19 @@ class Jobs{
         while($row = mysqli_fetch_assoc($query)){
             $data[] = $row;
         }
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
+        return $data;
+    }
+
+    // Get Specific Job Details
+    public static function getJobDetails($postId){
+        global $connect;
+        $q = "SELECT * FROM jobs WHERE id = $postId";
+        $query = mysqli_query($connect, $q);
+        $data = [];
+        while($row = mysqli_fetch_assoc($query)){
+            $data[] = $row;
+        }
+        return $data;
     }
 
 }

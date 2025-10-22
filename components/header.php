@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(!isset($_SESSION)){
+    session_start();
+}
 $user = null;
 if(isset($_SESSION['user'])){
     if($_SESSION['user'] == "manager" || $_SESSION['user'] == "applicant"){
