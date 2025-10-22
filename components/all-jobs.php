@@ -25,10 +25,10 @@
                     ?>
                         <tr>
                             <td><img src="./imgs/<?php echo $job['thumbnail']; ?>" alt=""></td>
-                            <td><a href="/job-board/job-details.php?post-id=<?php echo$job['id'];?>"><?php echo $job['title']; ?></a></td>
+                            <td><a href="/job-board/job-details.php?job-id=<?php echo$job['id'];?>"><?php echo $job['title']; ?></a></td>
                             <td>Web Design</td>
                             <td><p><?php echo truncatewords($job['description'],15); ?></p></td>
-                            <td><a class="table-link" href="#">Edit Post</a> <a class="table-link table-link-danger" href="#">Delete Post</a></td>
+                            <td><a class="table-link" href="/job-board/dashboard.php?content=edit-job&job-id=<?php echo $job['id']; ?>">Edit Post</a> <a class="table-link table-link-danger" href="#">Delete Post</a></td>
                         </tr>
                     <?php
                         endforeach;

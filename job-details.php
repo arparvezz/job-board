@@ -4,8 +4,8 @@ if(!isset($_SESSION)){
 }
 $postId = 1;
 
-if(isset($_GET['post-id'])){
-   $postId = $_GET['post-id'];
+if(isset($_GET['job-id'])){
+   $postId = $_GET['job-id'];
 }
 
 require("functions.php");
@@ -41,7 +41,7 @@ $jobsDetails = Jobs::getJobDetails($postId)[0];
                     <img src="./imgs/<?php echo $jobsDetails['thumbnail']; ?>" alt="job-details-thumb">
                 </div>
                 <p><?php echo $jobsDetails['description']; ?></p>
-                <a class="btn btn-primary" href="/job-board/apply.php?post-id=<?php echo $jobsDetails['id']; ?>">Apply This Job Now</a>
+                <a class="btn btn-primary" href="/job-board/apply.php?job-id=<?php echo $jobsDetails['id']; ?>">Apply This Job Now</a>
             </div>
         </div>
     </section>

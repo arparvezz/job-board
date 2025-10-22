@@ -168,7 +168,7 @@ tbody td {
 .prev-thumb-preview {
     width: 60px;
     height: 60px;
-    background: url("../imgs/web-design.jpg");
+    /* background: url("../imgs/web-design.jpg"); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

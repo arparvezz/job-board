@@ -33,7 +33,7 @@ if(!isset($_SESSION['user'])){
                         <?php if($_SESSION['user'] == "manager"){ ?>
                             <li><a href="/job-board/dashboard.php?content=all-jobs">All Jobs</a></li>
                             <li><a href="/job-board/dashboard.php?content=add-new-job">Add New Job</a></li>
-                            <li><a href="/job-board/dashboard.php?content=edit-job">Edit Job</a></li>
+                            <!-- <li><a href="/job-board/dashboard.php?content=edit-job">Edit Job</a></li> -->
                         <?php } ?>
                         <li><a href="/job-board/dashboard.php?content=my-account">My Account </a></li>
                     </ul>
