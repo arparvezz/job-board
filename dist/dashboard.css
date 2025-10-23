@@ -155,8 +155,11 @@ tbody td {
     border-radius: 5px;
 }
 .table-link-danger {
+    border: none;
+    outline: none;
     background: red;
     margin-top: 2px;
+    cursor: pointer;
 }
 /* all jobs section end */
 

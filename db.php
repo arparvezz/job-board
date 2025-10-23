@@ -111,4 +111,29 @@ class Jobs{
         return $data;
     }
 
+
+    // Edit Job
+    public static function editJob($jobId,$thumb,$title,$description,$category){
+        global $connect;
+        $q = "UPDATE jobs SET `thumbnail` = '{$thumb}', `title` = '{$title}',`description` = '{$description}',`category` = '{$category}' WHERE id = '{$jobId}' LIMIT 1";
+        $query = mysqli_query($connect, $q);
+        if($query){
+            header("location: /job-board/dashboard.php?content=edit-job&msg=post updated!&success=true&job-id={$jobId}");
+        }
+    }
+
+
+    // Delete Job
+    public static function deleteJob($jobId){
+        global $connect;
+        $q = "DELETE FROM jobs WHERE id = '{$jobId}' LIMIT 1";
+        $query = mysqli_query($connect, $q);
+        if($query){
+            header("location: /job-board/dashboard.php?content=all-jobs&msg=Job deleted!&success=true");
+        }
+    }
+
+
+
+
 }

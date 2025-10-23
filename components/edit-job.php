@@ -12,16 +12,27 @@ require("functions.php");
 $jobsDetails = Jobs::getJobDetails($jobId)[0];
 
 
-print_r($jobsDetails);
-
 ?>
 <!-- Edit job -->
 <div class="main-content-wrap">
+    <?php
+        if(isset($_GET['msg']) && isset($_GET['success'])){
+            $msg = $_GET['msg'];
+            if( $_GET['success'] == 'true'){
+                echo "<span class='alert alert-success'>{$msg}</span>";
+            }else{
+                echo "<span class='alert alert-danger'>{$msg}</span>";
+            }
+        }
+    ?>
     <div class="dashboard-heading-wrap">
         <h3>Edit Job</h3>
     </div>
     <div class="add-job-form">
-        <form action="">
+        <form action="functions.php" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="operation" value="edit-job">
+            <input type="hidden" name="job-id" value="<?php echo $jobsDetails['id']; ?>">
+            <input type="hidden" name="prev-thumb" value="<?php echo $jobsDetails['thumbnail']; ?>">
             <div class="dashboard-form-item">
                 <div class="job-thumbs-section">
                     <div class="job-thumbs-section-prev">

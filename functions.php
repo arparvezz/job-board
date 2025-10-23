@@ -88,7 +88,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "user-info-upd
 // ================================== JOB MANAGEMENT START ===================================== //
 // ============================================================================================= //
 
-
+// Add new Job
 if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "add-new-job"){
     $filesDirectory = "./imgs/";
     $title = $_POST["job-title"];
@@ -100,11 +100,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "add-new-job")
 
     if($title != "" && $description != "" && $thumbnailName != ""){
         move_uploaded_file($thumbnail['job-thumb']['tmp_name'], "$filesDirectory/$thumbnailName");
-        Posts::addPost($thumbnailName,$title,$description,$category,$posted_by);
+        Jobs::addPost($thumbnailName,$title,$description,$category,$posted_by);
     }else{
         header("location: /job-board/dashboard.php?content=add-new-job&msg=field info missing!&success=false");
     }
 
+}
+
+
+
+// Edit Job
+if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "edit-job"){
+    $filesDirectory = "./imgs/";
+    $title = $_POST["job-title"];
+    $jobId = $_POST["job-id"];
+    $description = $_POST["job-description"];
+    $category = $_POST["job-category"];
+    $posted_by = $_SESSION['userId'];
+    $thumbnail = $_FILES;
+    $thumbnailName = $thumbnail['job-thumb']['name'];
+    $previousThumb = $_POST["prev-thumb"];
+
+    if($title != "" && $description != ""){
+        if($thumbnailName != ""){
+            move_uploaded_file($thumbnail['job-thumb']['tmp_name'], "$filesDirectory/$thumbnailName");
+            Jobs::editJob($jobId,$thumbnailName,$title,$description,$category);
+        }else{
+            Jobs::editJob($jobId,$previousThumb,$title,$description,$category);
+        }
+    }else{
+        header("location: /job-board/dashboard.php?content=edit-job&msg=field info missing!&success=false&job-id={$jobId}");
+    }
+
+}
+
+// Delete Job after confirm-alert
+if(isset($_GET['content']) && $_GET['content'] == 'delete-job'){
+    $jobId =  $_GET['job-id'];
+    Jobs::deleteJob($jobId);
 }
 
 // ============================================================================================= //
