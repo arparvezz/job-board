@@ -40,6 +40,7 @@
                     <div class="jobs-filter-item">
                         <h3>Filter By Category</h3>
                         <select name="category" id="category">
+                            <option value="web-design">All Category</option>
                             <option value="web-design">Web Design</option>
                             <option value="graphic-design">Graphic Design</option>
                             <option value="digital-marketing">Digital Marketing</option>

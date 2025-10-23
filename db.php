@@ -9,6 +9,7 @@ if(!$connect){
     echo "DB not connected";
 }
 
+// User class
 class User {
 
     // login User
@@ -73,7 +74,7 @@ class User {
 
 
 
-
+// Jobs class
 class Jobs{
 
 
@@ -133,7 +134,17 @@ class Jobs{
         }
     }
 
+}
 
 
-
+// Applicant class - will manage application of job-applicants
+class Application{
+    public static function apply($name,$email,$cv,$jobId){
+        global $connect;
+        $q = "INSERT INTO application(`name`,`email`,`cv`,`job_id`) VALUES('{$name}','{$email}','{$cv}','{$jobId}')";
+        $query = mysqli_query($connect, $q);
+        if($query){
+            header("location: /job-board/apply.php?msg=Application Done!&success=true");
+        }
+    }
 }
