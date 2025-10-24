@@ -174,7 +174,9 @@ header {
     width: 90%;
     padding: 5px;
 }
-
+.filter-hidden-btn{
+    display: none;
+}
 .jobs-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

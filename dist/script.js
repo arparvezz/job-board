@@ -2,15 +2,19 @@ let sidebarToggleBtn = document.querySelector(".sidebar-toggle");
 let sidebar = document.querySelector(".sidebar");
 let sidebarOverlay = document.querySelector(".sidebar-overlay");
 
-sidebarToggleBtn.addEventListener("click",function(e){
-    e.preventDefault();
-    sidebar.style.display = 'unset';
-});
+if(sidebarToggleBtn != null){
+    sidebarToggleBtn.addEventListener("click",function(e){
+        e.preventDefault();
+        sidebar.style.display = 'unset';
+    });
+}
 
-sidebarOverlay.addEventListener("click",function(e){
-    e.preventDefault();
-    sidebar.style.display = 'none';
-});
+if(sidebarOverlay != null){
+    sidebarOverlay.addEventListener("click",function(e){
+        e.preventDefault();
+        sidebar.style.display = 'none';
+    });
+}
 
 
 // =====================
@@ -66,4 +70,30 @@ deleteJobBtns.forEach(singleBtn => {
             window.location.href = event.target.dataset.deleteurl;
         }
     })
+})
+
+
+
+// Job Category Filter in all-jobs page
+
+let jobCategoryFilterSelect = document.querySelectorAll(".job-category-filter-select");
+
+jobCategoryFilterSelect.forEach(element => {
+    element.addEventListener('change',function(event){
+        this.parentElement.querySelector('button').click();
+    })
+})
+
+
+
+// Select the Job category in the dashboard
+jobCategoryFilterSelect.forEach(element => {
+    if(element != null){
+        let currentSelectValue = element.dataset.val;
+        element.querySelectorAll('option').forEach(el => {
+            if(el.value == currentSelectValue){
+                el.setAttribute('selected',true);
+            }
+        })
+    }
 })

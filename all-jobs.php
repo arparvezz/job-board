@@ -1,6 +1,11 @@
 <?php
     require("functions.php");
     $allJobs = Jobs::allJobs();
+
+    $jobCategory = 'all-category';
+    if(isset($_GET['job-category'])){
+        $jobCategory = $_GET['job-category'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,16 +38,21 @@
     <!-- Jobs section start -->
     <section class="jobs-section">
         <div class="container">
+            <h3><?php echo $jobCategory; ?></h3>
             <div class="jobs-section-wrap">
                 <div class="jobs-filter">
                     <div class="jobs-filter-item">
                         <h3>Filter By Category</h3>
-                        <select name="category" id="category">
-                            <option value="web-design">All Category</option>
-                            <option value="web-design">Web Design</option>
-                            <option value="graphic-design">Graphic Design</option>
-                            <option value="digital-marketing">Digital Marketing</option>
-                        </select>
+                        <form method="GET" action="all-jobs.php">
+                            <select name="job-category" id="category" class="job-category-filter-select"  data-val="<?php echo $jobCategory; ?>">
+                                <option value="all-category">All Category</option>
+                                <option value="web-design">Web Design</option>
+                                <option value="graphic-design">Graphic Design</option>
+                                <option value="digital-marketing">Digital Marketing</option>
+                            </select>
+                            <button type="submit" class="filter-hidden-btn">Submit</button>
+                        </form>
+                        
                     </div>
                 </div>
                 <div class="job-grid-wrap">
@@ -52,7 +62,9 @@
                         ?>
                             <!-- job card goes here -->
                             <?php
-                                require("./components/job-card.php");
+                                if($job['category'] == $jobCategory || $jobCategory == 'all-category'){
+                                    require("./components/job-card.php");
+                                }
                             ?>
                         <?php
                             endforeach;
@@ -70,6 +82,6 @@
     <?php
         require("./components/footer.php");
     ?>
-    
+<script src="./dist/script.js"></script>
 </body>
 </html>

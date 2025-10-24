@@ -143,3 +143,28 @@ if(isset($_GET['content']) && $_GET['content'] == 'delete-job'){
 // ============================================================================================= //
 // =================================== JOB MANAGEMENT END ====================================== //
 // ============================================================================================= //
+
+
+
+
+
+// ============================================================================================= //
+// =============================== Application MANAGEMENT START ================================ //
+// ============================================================================================= //
+
+// Add new Job
+if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "apply-job"){
+    $filesDirectory = "./applications/";
+    $jobId = $_POST["job-id"];
+    $name = $_POST["application-name"];
+    $email = $_POST["application-email"];
+    $resume = $_FILES;
+    $resumeName = $resume['application-resume']['name'];
+
+    if($name != "" && $email != "" && $resumeName != ""){
+        move_uploaded_file($resume['application-resume']['tmp_name'], "$filesDirectory/$resumeName");
+        Application::apply($name,$email,$resumeName,$jobId);
+    }else{
+        header("location: /job-board/apply.php?msg=field info missing!&success=false");
+    }
+}
