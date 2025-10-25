@@ -101,6 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["operation"] == "add-new-job")
     if($title != "" && $description != "" && $thumbnailName != ""){
         move_uploaded_file($thumbnail['job-thumb']['tmp_name'], "$filesDirectory/$thumbnailName");
         Jobs::addPost($thumbnailName,$title,$description,$category,$posted_by);
+        // echo "($thumbnailName,$title,$description,$category,$posted_by)";
     }else{
         header("location: /job-board/dashboard.php?content=add-new-job&msg=field info missing!&success=false");
     }

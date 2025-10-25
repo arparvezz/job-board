@@ -65,7 +65,7 @@ let deleteJobBtns = document.querySelectorAll('.post-delete-button');
 
 deleteJobBtns.forEach(singleBtn => {
     singleBtn.addEventListener('click',function(event){
-        let consent = confirm("Are you sure to delete this post?");
+        let consent = confirm("Are you sure to delete this post with all job-applications?");
         if(consent){
             window.location.href = event.target.dataset.deleteurl;
         }

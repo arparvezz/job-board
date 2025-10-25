@@ -13,10 +13,9 @@
                     <div class="footer-links">
                         <h3>Job Categories</h3>
                         <ul class="footer-link-items">
-                            <li><a href="#">Web Development</a></li>
-                            <li><a href="#">Graphic Design</a></li>
-                            <li><a href="#">Digital Marketing</a></li>
-                            <li><a href="#">Email Marketing</a></li>
+                            <li><a href="/job-board/all-jobs.php?job-category=web-design">Web Design</a></li>
+                            <li><a href="/job-board/all-jobs.php?job-category=graphic-design">Graphic Design</a></li>
+                            <li><a href="/job-board/all-jobs.php?job-category=digital-marketing">Digital Marketing</a></li>
                         </ul>
                     </div>
                 </div>
@@ -24,10 +23,9 @@
                     <div class="footer-links">
                         <h3>Job Categories</h3>
                         <ul class="footer-link-items">
-                            <li><a href="#">Web Development</a></li>
-                            <li><a href="#">Graphic Design</a></li>
-                            <li><a href="#">Digital Marketing</a></li>
-                            <li><a href="#">Email Marketing</a></li>
+                            <li><a href="/job-board/all-jobs.php?job-category=web-design">Web Design</a></li>
+                            <li><a href="/job-board/all-jobs.php?job-category=graphic-design">Graphic Design</a></li>
+                            <li><a href="/job-board/all-jobs.php?job-category=digital-marketing">Digital Marketing</a></li>
                         </ul>
                     </div>
                 </div>

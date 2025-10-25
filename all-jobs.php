@@ -38,7 +38,6 @@
     <!-- Jobs section start -->
     <section class="jobs-section">
         <div class="container">
-            <h3><?php echo $jobCategory; ?></h3>
             <div class="jobs-section-wrap">
                 <div class="jobs-filter">
                     <div class="jobs-filter-item">
@@ -62,7 +61,7 @@
                         ?>
                             <!-- job card goes here -->
                             <?php
-                                if($job['category'] == $jobCategory || $jobCategory == 'all-category'){
+                                if($job['category'] == $jobCategory || $jobCategory == 'all-category' || $jobCategory == ''){
                                     require("./components/job-card.php");
                                 }
                             ?>

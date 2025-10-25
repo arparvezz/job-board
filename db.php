@@ -82,6 +82,7 @@ class Jobs{
     public static function addPost($thumb,$title,$description,$category,$posted_by){
         global $connect;
         $q = "INSERT INTO jobs(`thumbnail`,`title`,`description`,`category`,`posted_by`) VALUES('{$thumb}','{$title}','{$description}','{$category}','{$posted_by}')";
+        // echo $q;
         $query = mysqli_query($connect, $q);
         if($query){
             header("location: /job-board/dashboard.php?content=add-new-job&msg=post added!&success=true");
@@ -126,9 +127,16 @@ class Jobs{
 
     // Delete Job
     public static function deleteJob($jobId){
+
+        // Deleteing the job
         global $connect;
         $q = "DELETE FROM jobs WHERE id = '{$jobId}' LIMIT 1";
         $query = mysqli_query($connect, $q);
+
+
+        // Deleting all applications for this job
+        $q2 = "DELETE FROM applications WHERE job_id = '{$jobId}'";
+        $query2 = mysqli_query($connect, $q2);
         if($query){
             header("location: /job-board/dashboard.php?content=all-jobs&msg=Job deleted!&success=true");
         }
@@ -141,7 +149,7 @@ class Jobs{
 class Application{
     public static function apply($name,$email,$cv,$jobId){
         global $connect;
-        $q = "INSERT INTO application(`name`,`email`,`cv`,`job_id`) VALUES('{$name}','{$email}','{$cv}','{$jobId}')";
+        $q = "INSERT INTO applications(`name`,`email`,`cv`,`job_id`) VALUES('{$name}','{$email}','{$cv}','{$jobId}')";
         $query = mysqli_query($connect, $q);
         if($query){
             header("location: /job-board/apply.php?msg=Application Done!&success=true");
@@ -149,7 +157,7 @@ class Application{
     }
     public static function getApplications($jobId){
         global $connect;
-        $q = "SELECT * FROM application WHERE `job_id` = '{$jobId}'";
+        $q = "SELECT * FROM applications WHERE `job_id` = '{$jobId}'";
         $query = mysqli_query($connect, $q);
         $data = [];
         while($row = mysqli_fetch_assoc($query)){
