@@ -35,7 +35,7 @@
                             <td><?php echo$job['category'];?></td>
                             <td><p><?php echo truncatewords($job['description'],15); ?></p></td>
                             <?php if($_SESSION['userId'] == $job['posted_by']): ?>
-                            <td><a href="/job-board/dashboard.php?content=applications&job-id=<?php echo $job['id']; ?>">
+                            <td><a href="/job-board/dashboard.php?content=applications-manager&job-id=<?php echo $job['id']; ?>">
                                 <?php echo count(Application::getApplications($job['id'])); ?>
                             </a></td>
                             <td>

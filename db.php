@@ -30,6 +30,7 @@ class User {
                 echo "User Found" . " role: " . $user['role'];
                 $_SESSION['user'] = $user['role'];
                 $_SESSION['userId'] = $user['id'];
+                $_SESSION['email'] = $user['email'];
                 header("location: dashboard.php?user={$user['role']}");
             }
         }
@@ -155,9 +156,22 @@ class Application{
             header("location: /job-board/apply.php?msg=Application Done!&success=true");
         }
     }
+    // applications grouped by Job Id - Manager can view applications and download CV.
     public static function getApplications($jobId){
         global $connect;
         $q = "SELECT * FROM applications WHERE `job_id` = '{$jobId}'";
+        $query = mysqli_query($connect, $q);
+        $data = [];
+        while($row = mysqli_fetch_assoc($query)){
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    // get application by applicant's email - for applicant's dashboard
+    public static function getApplicationsByEmail($email){
+        global $connect;
+        $q = "SELECT * FROM applications WHERE `email` = '{$email}'";
         $query = mysqli_query($connect, $q);
         $data = [];
         while($row = mysqli_fetch_assoc($query)){
