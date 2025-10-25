@@ -5,14 +5,14 @@ if(!isset($_SESSION)){
 
 require("functions.php");
 
-$postId = 1;
+$jobId = 1;
 
 if(isset($_GET['job-id'])){
-   $postId = $_GET['job-id'];
+   $jobId = $_GET['job-id'];
 }
 
 
-$jobsDetails = Jobs::getJobDetails($postId)[0];
+$jobsDetails = Jobs::getJobDetails($jobId)[0];
 
 
 // echo "<pre>";

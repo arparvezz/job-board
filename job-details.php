@@ -2,14 +2,14 @@
 if(!isset($_SESSION)){
     session_start();
 }
-$postId = 1;
+$jobId = 1;
 
 if(isset($_GET['job-id'])){
-   $postId = $_GET['job-id'];
+   $jobId = $_GET['job-id'];
 }
 
 require("functions.php");
-$jobsDetails = Jobs::getJobDetails($postId)[0];
+$jobsDetails = Jobs::getJobDetails($jobId)[0];
 
 
 // print_r($jobsDetails);

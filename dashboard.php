@@ -71,6 +71,12 @@ if(!isset($_SESSION['user'])){
             ?>
 
             <?php
+                if(isset($_GET['content']) && $_GET['content'] == "applications" ){
+                    include "./components/applications.php";
+                }
+            ?>
+
+            <?php
                 if(isset($_GET['content']) && $_GET['content'] == "my-account" ){
                     include "./components/my-account.php";
                 }

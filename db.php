@@ -101,9 +101,9 @@ class Jobs{
     }
 
     // Get Specific Job Details
-    public static function getJobDetails($postId){
+    public static function getJobDetails($jobId){
         global $connect;
-        $q = "SELECT * FROM jobs WHERE id = $postId";
+        $q = "SELECT * FROM jobs WHERE id = $jobId";
         $query = mysqli_query($connect, $q);
         $data = [];
         while($row = mysqli_fetch_assoc($query)){
@@ -146,5 +146,15 @@ class Application{
         if($query){
             header("location: /job-board/apply.php?msg=Application Done!&success=true");
         }
+    }
+    public static function getApplications($jobId){
+        global $connect;
+        $q = "SELECT * FROM application WHERE `job_id` = '{$jobId}'";
+        $query = mysqli_query($connect, $q);
+        $data = [];
+        while($row = mysqli_fetch_assoc($query)){
+            $data[] = $row;
+        }
+        return $data;
     }
 }
